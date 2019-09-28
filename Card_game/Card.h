@@ -1,15 +1,26 @@
 #pragma once
+#include"Place.h"
+#include"Deck.h"
 class Card
 {
 private:
 	int card_num;
 	Shape card_shape;
-	//GUI 적용시킬때 이미지 같은 것이 필요하다.
+	Place card_postion;
+	bool open;
+	//GUI 적용시킬때 이미지 + 이미지의 크기 같은 것이 필요하다.
 public:
-	Card();
-	Card(Shape Card_sha, int card_n);
+	Card();// default는 false
+	Card(Shape Card_sha, int card_n); // default는 false
+	Card(Shape Card_sha, int card_n, bool is_open);
 	int getCardNum();
 	Shape getCardShape();
+	Place getCardPosition();
+	int place(Deck someDeck);
+	void printing();
+	bool is_open();
+	void set_open();
+	void set_open(bool opening);
 	~Card();
 };
 
@@ -17,5 +28,5 @@ enum Shape {
 	Spade,
 	Diamond,
 	Heart,
-	Clober
+	Clover
 };

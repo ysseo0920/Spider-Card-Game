@@ -1,7 +1,8 @@
 #pragma once
-class Deck
+#include"Place.h"
+#include"Card_pile.h"
+class Deck : Card_pile
 {
-
 public:
 	Deck();
 	~Deck();

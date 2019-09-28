@@ -1,5 +1,6 @@
 #include "Board.h"
-
+#include <algorithm>
+#include <array>
 # include <iostream> 
 # include <list>
 # include <queue>
@@ -19,7 +20,6 @@ class Board {
 	int score; // Á¡¼ö
 
 	std::list<Card> allCard;
-	std::queue<Card> forDist;
 	std::stack<Card> store;
 	
 	
@@ -35,7 +35,7 @@ class Board {
 
 	void remove(); // µ¦¿¡ Ä«µå¸¦ »«´Ù.
 
-	void print(); // print current situlation.
+	void print(); // print current situlation.	
 
 	~Board(); // destructor
 };
@@ -51,13 +51,16 @@ Board::Board(int variety, int setNum) {
 	_set = setNum;
 	score = 500;
 	cnt = 0;
+	Card* forDist = new Card[setNum]; 
+	int n = 0;
 	for (int i = 0; i < setNum / 4; i++) {
 		for (int j = 0; j < _shape; j++) {
 			Card c = Card(j, i);
-			Board::forDist.push(c);
+			forDist[n++] = c;
+		
 		}
 	}
-
+	std::random_shuffle(forDist, forDist + n); // shuffle
 
 }
 

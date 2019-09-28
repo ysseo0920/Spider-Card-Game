@@ -55,7 +55,6 @@ Board::Board(int variety, int setNum) {
 		for (int j = 0; j < _shape; j++) {
 			Card c = Card(j, i);
 			Board::forDist.push(c);
-
 		}
 	}
 

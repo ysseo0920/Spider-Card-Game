@@ -77,15 +77,15 @@ class Board {
 	}
 
 
-	void isEnd()
+	bool isEnd()
 	{
 		if (cnt < _set) {
-			return;
+			return false;
 		}
 		else {
 			std::cout << "카드 게임이 끝났습니다." << std::endl;
 			std::cout << "점수는 " << score << "점 입니다" << std::endl;
-			Board::~Board();
+			return true;
 		}
 	}// end  // 게임이 끝났는지 아닌지 체크하고 끝나면, deconstror를 부른다.
 

@@ -2,19 +2,15 @@
 
 
 
-Card::Card()
-{
-	
-}
 
-Card::Card(Shape Card_sha, int card_n)
+Card::Card(Shape* Card_sha, int card_n)
 {
 	card_shape = Card_sha;
 	card_num = card_n;
 	open = false;
 }
 
-Card::Card(Shape Card_sha, int card_n, bool is_open)
+Card::Card(Shape* Card_sha, int card_n, bool is_open)
 {
 	card_shape = Card_sha;
 	card_num = card_n;
@@ -26,7 +22,7 @@ int Card::getCardNum()
 	return card_num;
 }
 
-Shape Card::getCardShape()
+Shape* Card::getCardShape()
 {
 	return card_shape;
 }
@@ -40,7 +36,7 @@ Place Card::getCardPosition()
 {
 	//TODO 나중에 GUI 만들때 생각하기
 	return Place();
-
+}
 int Card::place(Deck someDeck)
 {
 	//TODO
@@ -49,15 +45,9 @@ int Card::place(Deck someDeck)
 
 void Card::printing()
 {
-	std::cout << "Card_num" << : card_num << std::endl << "Card_shape : ";
-	if (card_shpae == Diamond)
-		std::cout << "♦";
-	else if (card_shape == Heart)
-		std::cout << "♥";
-	else if (card_shape == clover)
-		std::cout << "🍀";
-	else
-		std::cout << "♠";
+	std::cout << "Card_num" << card_num << std::endl << "Card_shape : ";
+	getCardShape()->print_shape;
+	std::cout << "(" << getCardShape()->get_name << std::endl;
 	std::cout << std::endl << "Card_open? : ";
 	if (open)
 		std::cout << "Yes";
@@ -68,15 +58,17 @@ void Card::printing()
 
 bool Card::is_open()
 {
-	return false;
+	return open;
 }
 
 void Card::set_open()
 {
+	open = true;
 }
 
 void Card::set_open(bool opening)
 {
+	open = opening;
 }
 
 

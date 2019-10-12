@@ -208,7 +208,7 @@ class Board {
 		std::cout <<  std::endl;
 		std::cout << "    " << "score " << score << std::endl;
 	    std::cout << "stack : "  << status << std::endl; 
-		
+		std::cout << " 1     2     3    4     5     6 "  <<  std::endl;
 		int numList[6] = { allCard[0].size,  allCard[1].size,  allCard[2].size,  allCard[3].size,  allCard[4].size,  allCard[5].size };
 		bool possible[6] = { true, true, true, true, true, true };
 		bool k = true;
@@ -216,7 +216,7 @@ class Board {
 		while (k) {
 
 			for (int i = 0; i < 6; i++) {
-
+				std::cout << " " << i;
 				if ( possible[i] == true) {
 					
 					Card o = *itr.at(i);
@@ -227,9 +227,12 @@ class Board {
 				}
 				else {
   
-					std::cout << "   "<< std::endl;
+					std::cout << "   ";
 				}
+
+
 			}
+			std::cout << std::endl;
 			k = possible[0] || possible[1] || possible[2] || possible[3] || possible[4] || possible[5];
 		}
 

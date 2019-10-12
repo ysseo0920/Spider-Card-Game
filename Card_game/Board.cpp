@@ -11,8 +11,6 @@
 using namespace std;
 
 class Board { 
-	Board(); // default constructor
-	Board(int variety, int setNum); // const
 
 
 	int cnt; // 맞춘 개수
@@ -33,11 +31,14 @@ class Board {
 
 		_shape = variety;
 		_set = setNum;
+		int cardNum = _shape * _set;
 		score = 500;
 		cnt = 0;
-		Card* forDist = new Card[setNum];
-		int n = 0;
 
+
+		Card* forDist = new Card[setNum];
+		
+		int n = 0;
 		for (int i = 0; i < setNum / 4; i++) {
 			Card c = Card(Spade, i);
 			forDist[n++] = c;
@@ -82,6 +83,8 @@ class Board {
 			return;
 		}
 		else {
+			std::cout << "카드 게임이 끝났습니다." << std::endl;
+			std::cout << "점수는 " << score << "점 입니다" << std::endl;
 			Board::~Board();
 		}
 	}// end  // 게임이 끝났는지 아닌지 체크하고 끝나면, deconstror를 부른다.
@@ -96,6 +99,7 @@ class Board {
 
 	}
 
+	// shape 때문에 수정해야함.
 	bool shiftHelp(int fx, int fy, int lx) {// shift 함수가 유효한지 체크한다.
 		if (fx >= 6 || lx >= 6) {
 			return false;
@@ -152,11 +156,11 @@ class Board {
 	void add(int num, std::list<Card> num2) {
 
 
-		list<Card> list1 = allCard.at(num);
+		list<Card> list1 = allCard[num];
 
 		// num list 끝에 접근.
 
-		for (list<Card>::iterator start = num2.begin(); num2 != num2.end(); ++start) {
+		for (list<Card>::iterator start = num2.begin(); start != num2.end(); ++start) {
 
 			list1.push_back(*start);
 
@@ -179,27 +183,27 @@ class Board {
 		list<Card>::iterator itr2 = list<Card>::iterator(itr);
 
 		// list에 num2번째 원소에 접근
-		while (itr != a->end()) {
-			Card c = *itr;
-			toReturn.push_back(c);
-			++itr;
-		}
+	//	while (itr != a->end()) {
+			//Card c = *itr;
+		//	toReturn.push_back(c);
+			//++itr;
+		//}
 	 
-		a->erase(itr2, a->end());
+		a->erase(itr, a->end());
 		return toReturn;
 
 	} // 덱에 카드를 뺀다.
 
+	// Print 내용 추가 바람.
 	void print() {
 		// 각 allCard의 리스트들의 원소를 생성
 		// 각 Card의 print함수를 작동하면서, iterator 추가.
 
 	} // print current situlation.	
 
-	~Board()
-	{
-		std::cout << "카드 게임이 끝났습니다." << std::endl;
-		std::cout << "점수는 " << score << "점 입니다" << std::endl;
+	~Board() // if ( setNum == count ) 
+	{   
+		
 	}
 	// destructor
 };

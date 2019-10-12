@@ -1,4 +1,13 @@
 #pragma once
+#include <algorithm>
+#include <array>
+# include <vector>
+# include <iostream> 
+# include <list>
+# include <queue>
+# include <stack>
+# include "Card.h"
+
 class Board
 {
 public:

@@ -7,8 +7,9 @@
 int main() {
 
 	Game g = Game();
+	g.~Game();
 
-	return 1;
+	return 0;
 
 }
 Game::Game()
@@ -41,7 +42,7 @@ Game::Game()
 	}
 	g.~Board();
 
-
+	
 
 
 }

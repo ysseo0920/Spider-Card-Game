@@ -7,6 +7,7 @@
 # include <queue>
 # include <stack>
 # include "Card.h"
+# include "Shape.h"
 
 using namespace std;
 
@@ -21,26 +22,30 @@ class Board {
 	std::vector<list<Card>> allCard;
 	std::stack<Card> store;
 	
-	
 	Board() {
 
-		Board(4, 4);
+		Board(4, 48);
+	}
+
+	Board(int variety) {
+
+		Board(variety, 48);
+
 	}
 
 	Board(int variety, int cardNum) {
 
 		_shape = variety;
-		_set = cardNum;
-		
+		_set = cardNum / variety;
 		score = 500;
 		cnt = 0;
 
 
-		Card* forDist = new Card[cardNum];
+		Card *forDist;
 		
 	
 		for (int i = 0; i < cardNum; i++) {
-			Card c = Card(cardNum % _shape, cardNum / _shape);
+			Card c = Card(new Shape(cardNum % _shape), cardNum / _shape);
 			forDist[i] = c;
 
 		}
@@ -66,12 +71,15 @@ class Board {
 			dq.pop_back();
 			store.push(c);
 		}
+		for (int i = 0; i < 6; i++) {
+
+			clear(i);
+		}
 
 
 
 
 	}
-
 
 	bool isEnd()
 	{
@@ -103,17 +111,24 @@ class Board {
 
 		list<Card> list1 = allCard.at(fx); // ??????
 		int flag = 0;
-		Shape mark;
+		Shape *mark;
 		for (list<Card>::iterator it = list1.begin(); it != list1.end(); ++it) {
 
 			if (fy == 0) {
 				flag = 1;
 				Card c = *it;
 				mark = c.getCardShape();// fy에 접근
+				flag = c.getCardNum();
 
 			}
 			else if (fy < 0) {
 				Card c = *it;
+				if (c.getCardNum == flag + 1) {
+					flag = flag + 1;
+				}
+				else {
+					return false;
+				}
 				if (mark != c.getCardShape()) {		// fy부터 문자들이 동일한지, 순자가 내림차순이 맞는지 점검.
 					return false;
 				}
@@ -122,14 +137,12 @@ class Board {
 		}
 		fy++;
 
-		if (flag == 1) {
+		if (flag != 0) {
 			return true;
 		}
 		else {
 			return false;
 		}
-
-		
 
 	}
 
@@ -144,8 +157,13 @@ class Board {
 			Card f = store.top();
 			store.pop();
 			a->push_back(f);
-
 		}
+		for (int i = 0; i < 6; i++) {
+
+			clear(i);
+		}
+
+
 	}
 	// stack에 있는 카드를 각 덱에 분배한다.
 
@@ -153,19 +171,12 @@ class Board {
 	void add(int num, std::list<Card> num2) {
 
 
-		list<Card> list1 = allCard[num];
-
-		// num list 끝에 접근.
-
-		for (list<Card>::iterator start = num2.begin(); start != num2.end(); ++start) {
-
-			list1.push_back(*start);
-
+		list<Card> *list1 = &allCard.at(num);
+		for (list<Card>::iterator itr = num2.begin(); itr != num2.end(); itr++) {
+			list1->push_back(*itr);
 		}
-
-		// 끝부터 num2에 있는 원소들을 이머 붙이기
-
-	} // 덱에 카드를 더한다.
+		clear(num);
+	} 
 
 	std::list<Card> remove(int num, int num2) {
 		list<Card> *a = &allCard[num];
@@ -177,7 +188,7 @@ class Board {
 			itr++;
 		}
 	
-		list<Card>::iterator itr2 = list<Card>::iterator(itr);
+		//list<Card>::iterator itr2 = list<Card>::iterator(itr);
 
 		// list에 num2번째 원소에 접근
 	//	while (itr != a->end()) {
@@ -190,6 +201,27 @@ class Board {
 		return toReturn;
 
 	} // 덱에 카드를 뺀다.
+
+	void clear(int a) {
+		list<Card> *p = &allCard.at(a);
+		list<Card>::iterator itr = p->end();
+		if (*itr->getCardNum != 1) {
+			return;
+		}
+		
+		for ( ; p->begin() != itr; itr-- ) {
+			if (*itr->getCardNum != cnt) {
+				return;
+			}
+			cnt++;
+		}
+		if (cnt != 14) {
+			return;
+		}
+
+		_set++;
+		return;
+	}
 
 	// Print 내용 추가 바람.
 	void print() {
@@ -249,10 +281,3 @@ class Board {
 	}
 	// destructor
 };
-
-
-
-
-
-
-

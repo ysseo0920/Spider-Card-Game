@@ -2,6 +2,7 @@
 #include<list>
 #include"Card.h"
 #include"Rule.h"
+
 class Card_pile
 {
 	std::list<Card> Cards;

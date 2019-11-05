@@ -12,6 +12,7 @@ class Board
 {
 public:
 	Board();
+	Board(int variety);
 	Board(int variety, int setNum);
 
 	bool isEnd();
@@ -21,6 +22,7 @@ public:
 	void add(int num, std::list<Card> num2);
 	std::list<Card> remove(int num, int num2);
 	void print();
+	void clear();
 
 
 	~Board();

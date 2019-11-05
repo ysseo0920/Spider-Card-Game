@@ -1,8 +1,5 @@
 ﻿#include "Card.h"
 
-
-
-
 Card::Card(Shape* Card_sha, int card_n)
 {
 	card_shape = Card_sha;

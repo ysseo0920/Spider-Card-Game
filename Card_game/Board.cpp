@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Board { 
+class Board {
 
 
 	int cnt; // 맞춘 개수
@@ -21,10 +21,9 @@ class Board {
 
 	std::vector<list<Card>> allCard;
 	std::stack<Card> store;
-	
-	Board() {
 
-		Board(4, 48);
+	Board() {
+		Board(4);
 	}
 
 	Board(int variety) {
@@ -41,14 +40,15 @@ class Board {
 		cnt = 0;
 
 
-		Card *forDist;
-		
-	
+		Card* forDist;
+
+
 		for (int i = 0; i < cardNum; i++) {
 			Card c = Card(new Shape(cardNum % _shape), cardNum / _shape);
 			forDist[i] = c;
 
 		}
+
 		std::random_shuffle(forDist, forDist + cardNum); // shuffle
 
 		std::deque<Card> dq; // 덱 
@@ -61,7 +61,7 @@ class Board {
 		for (int a = 0; a < 6; a++) { // 처음에 card pile이 6개로 되어있지만, 나중에 수정할 때 다른 값으로 변경
 			std::list<Card> newList;
 			for (int i = 0; i < 5; i++) {
-				newList.push_back(dq.pop_back);
+				newList.push_back(dq.back());
 				dq.pop_back();
 			}
 			allCard.push_back(newList);
@@ -111,7 +111,7 @@ class Board {
 
 		list<Card> list1 = allCard.at(fx); // ??????
 		int flag = 0;
-		Shape *mark;
+		Shape* mark;
 		for (list<Card>::iterator it = list1.begin(); it != list1.end(); ++it) {
 
 			if (fy == 0) {
@@ -123,7 +123,7 @@ class Board {
 			}
 			else if (fy < 0) {
 				Card c = *it;
-				if (c.getCardNum == flag + 1) {
+				if (c.getCardNum() == flag + 1) {
 					flag = flag + 1;
 				}
 				else {
@@ -171,15 +171,15 @@ class Board {
 	void add(int num, std::list<Card> num2) {
 
 
-		list<Card> *list1 = &allCard.at(num);
+		list<Card>* list1 = &allCard.at(num);
 		for (list<Card>::iterator itr = num2.begin(); itr != num2.end(); itr++) {
 			list1->push_back(*itr);
 		}
 		clear(num);
-	} 
+	}
 
 	std::list<Card> remove(int num, int num2) {
-		list<Card> *a = &allCard[num];
+		list<Card>* a = &allCard.at(num);
 		list<Card> toReturn;
 		//num list에 접근
 
@@ -187,7 +187,7 @@ class Board {
 		for (int i = 0; i < num2; i++) { // 범위가 valid 한지 체크.
 			itr++;
 		}
-	
+
 		//list<Card>::iterator itr2 = list<Card>::iterator(itr);
 
 		// list에 num2번째 원소에 접근
@@ -196,21 +196,21 @@ class Board {
 		//	toReturn.push_back(c);
 			//++itr;
 		//}
-	 
+
 		a->erase(itr, a->end());
 		return toReturn;
 
 	} // 덱에 카드를 뺀다.
 
 	void clear(int a) {
-		list<Card> *p = &allCard.at(a);
+		list<Card>* p = &allCard.at(a);
 		list<Card>::iterator itr = p->end();
-		if (*itr->getCardNum != 1) {
+		if (itr->getCardNum() != 1) {
 			return;
 		}
-		
-		for ( ; p->begin() != itr; itr-- ) {
-			if (*itr->getCardNum != cnt) {
+
+		for (; p->begin() != itr; itr--) {
+			if (itr->getCardNum() != cnt) {
 				return;
 			}
 			cnt++;
@@ -223,61 +223,10 @@ class Board {
 		return;
 	}
 
-	// Print 내용 추가 바람.
-	void print() {
-
-		bool s = store.empty;
-		const char* status = ( s ) ? "empty" : "full";
-		std::vector<list<Card>::iterator> itr;
-		itr.at(0) = allCard[0].begin();
-		itr.at(1) = allCard[1].begin();
-		itr.at(2) = allCard[2].begin();
-		itr.at(3) = allCard[3].begin();
-		itr.at(4) = allCard[4].begin();
-		itr.at(5) = allCard[5].begin();
-
-		std::cout << "                    " <<" Console 창 "<< "                    " << std::endl;
-		std::cout <<  std::endl;
-		std::cout << "    " << "score " << score << std::endl;
-	    std::cout << "stack : "  << status << std::endl; 
-		std::cout << " 1     2     3    4     5     6 "  <<  std::endl;
-		int numList[6] = { allCard[0].size,  allCard[1].size,  allCard[2].size,  allCard[3].size,  allCard[4].size,  allCard[5].size };
-		bool possible[6] = { true, true, true, true, true, true };
-		bool k = true;
-		int p = 1;
-		while (k) {
-
-			for (int i = 0; i < 6; i++) {
-				std::cout << " " << i;
-				if ( possible[i] == true) {
-					
-					Card o = *itr.at(i);
-					o.printing();
-				    itr.at(i)++;
-					if (itr.at(i) > allCard[i].end )
-						possible[i] = false;
-				}
-				else {
-  
-					std::cout << "   ";
-				}
-
-
-			}
-			std::cout << std::endl;
-			k = possible[0] || possible[1] || possible[2] || possible[3] || possible[4] || possible[5];
-		}
-
-
-
-		// 각 allCard의 리스트들의 원소를 생성
-		// 각 Card의 print함수를 작동하면서, iterator 추가.
-
-	} // print current situlation.	
 
 	~Board() // if ( setNum == count ) 
-	{   
-		
+	{
+
 	}
 	// destructor
 };

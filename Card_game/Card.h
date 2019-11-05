@@ -1,7 +1,8 @@
 #pragma once
 #include"Place.h"
-#include"Deck.h"
 #include"Shape.h"
+# include "string"
+
 class Card
 {
 private:
@@ -18,8 +19,8 @@ public:
 	Card(Shape* Card_sha, int card_n, bool is_open);
 	int getCardNum();
 	Shape* getCardShape();
-	Place getCardPosition();
-	int place(Deck someDeck);
+	//Place getCardPosition();
+	//int place(Deck someDeck);
 	void printing();
 	bool is_open();
 	void set_open();

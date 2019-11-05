@@ -1,6 +1,6 @@
 #include "Game.h"
 
-# include <iostream>
+#include <iostream>
 #include "Board.h"
 
 
@@ -12,6 +12,8 @@ int main() {
 	return 0;
 
 }
+
+
 Game::Game()
 {
 
@@ -25,7 +27,7 @@ Game::Game()
     	
 	Board g = Board(variety, cardNum);
 	int f1, f2, l1;
-	while (g.isEnd) {
+	while (g.isEnd()) {
 
 		std::cout << "어느 카드를 움직이시겠습니까?  ex 1 2 )  ";
 
@@ -35,8 +37,7 @@ Game::Game()
 		std::cin >> l1;
 
 		g.shift(f1, f2, l1);
-		g.print();
-
+		
 
 
 	}

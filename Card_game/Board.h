@@ -1,3 +1,4 @@
+
 #pragma once
 #include <algorithm>
 #include <array>
@@ -21,7 +22,7 @@ public:
 	void distribute();
 	void add(int num, std::list<Card> num2);
 	std::list<Card> remove(int num, int num2);
-	void print();
+
 	void clear();
 
 

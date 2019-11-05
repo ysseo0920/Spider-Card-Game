@@ -3,6 +3,8 @@
 #include <string>
 # include <vector>
 
+
+
 char Shape::get_shape() {
 	return _shape;
 }
@@ -22,7 +24,7 @@ Shape::Shape(std::string some) {
 	for (int i = 0; i < some.size(); i++) {
 		some[i] = toupper(some[i]); //소문자를 대문자로 교환.
 	}
-	for (int i = 0; i < charlist.size; i++) {
+	for (int i = 0; i < charlist.size(); i++) {
 
 
 		if (some._Equal(charlist.at(i))) {

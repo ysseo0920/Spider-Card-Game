@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include<iostream>
-#include <string>
+
 # include <vector>
 class Shape {
 private:
@@ -17,9 +17,10 @@ private:
 	};
 	
 public:
-  char get_shape();
+    char get_shape();
 	std::string get_name();
 	void print_shape();
+	Shape();
 	Shape(int code);
 	Shape(std::string something);
 	Shape(char something, std::string name_); 

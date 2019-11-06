@@ -224,56 +224,12 @@ class Board {
 	}
 
 	// Print 내용 추가 바람.
-	void print() {
-
-		bool s = store.empty;
-		const char* status = ( s ) ? "empty" : "full";
-		std::vector<list<Card>::iterator> itr;
-		itr.at(0) = allCard[0].begin();
-		itr.at(1) = allCard[1].begin();
-		itr.at(2) = allCard[2].begin();
-		itr.at(3) = allCard[3].begin();
-		itr.at(4) = allCard[4].begin();
-		itr.at(5) = allCard[5].begin();
-
-		std::cout << "                    " <<" Console 창 "<< "                    " << std::endl;
-		std::cout <<  std::endl;
-		std::cout << "    " << "score " << score << std::endl;
-	    std::cout << "stack : "  << status << std::endl; 
-		std::cout << " 1     2     3    4     5     6 "  <<  std::endl;
-		int numList[6] = { allCard[0].size,  allCard[1].size,  allCard[2].size,  allCard[3].size,  allCard[4].size,  allCard[5].size };
-		bool possible[6] = { true, true, true, true, true, true };
-		bool k = true;
-		int p = 1;
-		while (k) {
-
-			for (int i = 0; i < 6; i++) {
-				std::cout << " " << i;
-				if ( possible[i] == true) {
-					
-					Card o = *itr.at(i);
-					o.printing();
-				    itr.at(i)++;
-					if (itr.at(i) > allCard[i].end )
-						possible[i] = false;
-				}
-				else {
-  
-					std::cout << "   ";
-				}
-
-
-			}
-			std::cout << std::endl;
-			k = possible[0] || possible[1] || possible[2] || possible[3] || possible[4] || possible[5];
-		}
-
 
 
 		// 각 allCard의 리스트들의 원소를 생성
 		// 각 Card의 print함수를 작동하면서, iterator 추가.
 
-	} // print current situlation.	
+	 // print current situlation.	
 
 	~Board() // if ( setNum == count ) 
 	{   

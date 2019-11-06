@@ -35,7 +35,6 @@ Game::Game()
 		std::cin >> l1;
 
 		g.shift(f1, f2, l1);
-		g.print();
 
 
 

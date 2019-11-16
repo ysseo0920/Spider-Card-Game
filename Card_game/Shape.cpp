@@ -10,14 +10,13 @@ std::string Shape::get_name()
 {
 	return _name;
 }
-void Shape::print_shape() {
-	std::cout << _shape;
-}
 
+
+
+// Default : Diamond 
 Shape::Shape() : Shape::Shape("Diamond") {
 
 }
-
 
 
 Shape::Shape(char some, std::string some2) {
@@ -41,7 +40,7 @@ Shape::Shape(std::string some) {
 		some[i] = toupper(some[i]); //소문자를 대문자로 교환.
 	}
 	int flag = 0;
-	for (int i = 0; i < charlist.size(); i++) {
+	for (int i = 0; i < charlist.size(); i++) { // compate name with the name of shape in vector
 
 
 		if (some._Equal(charlist.at(i))) {
@@ -54,6 +53,7 @@ Shape::Shape(std::string some) {
 		
 	}
 	if (flag == 0) {
+		// invalid input
 		delete[] this;
 	}
 

@@ -1,12 +1,13 @@
 ﻿#pragma once
-#include<iostream>
-
+# include <iostream>
 # include <vector>
 class Shape {
 private:
 	std::string _name;
 	char _shape;
-	std::vector <int> unicode = {
+	
+	// Unicode for each shape  + Expansin ==> Just add unicod, and string name to this Vector 
+	std::vector <int> unicode = { 
 		9830, 9827, 9829, 9823
 	};
    std::vector <std::string> charlist{
@@ -17,13 +18,12 @@ private:
 	};
 	
 public:
-    char get_shape();
-	std::string get_name();
-	void print_shape();
-	Shape();
-	Shape(int code);
-	Shape(std::string something);
-	Shape(char something, std::string name_); 
+    char get_shape(); // get unicode of shape ==> for print  
+	std::string get_name(); // get SHAPE'S NAME ==> for intener code to distinguish same string or not.
+	Shape(); // Make shape : default : Diamond
+	Shape(int code); // code refer vector Ex int code 1 => generate shape which have unicode 9830, string DIAMOND  
+	Shape(std::string name); 
+	Shape(char something, std::string name_); // somthing : unicode, name : the name of shape 
 	
 
 	/* UNICODE 

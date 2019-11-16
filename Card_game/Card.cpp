@@ -1,29 +1,45 @@
-﻿#include "Card.h"
+﻿#pragma once
+#include "Card.h"
+#include "Shape.h"
 
-Card::Card(Shape* Card_sha, int card_n)
-{
-	card_shape = Card_sha;
-	card_num = card_n;
-	open = false;
-}
+    Card::Card() : Card::Card(new Shape("diamond"), 1) {
+			
+	}
+	Card::Card(Shape* Card_sha, int card_n) : Card::Card(Card_sha, card_n, false) {
+		
+	} // default는 false 
 
-Card::Card(Shape* Card_sha, int card_n, bool is_open)
-{
-	card_shape = Card_sha;
-	card_num = card_n;
-	open = is_open;
-}
+	Card::Card(Shape* Card_sha, int card_n, bool is_open)
+	{
+		card_shape = Card_sha;
+		card_num = card_n;
+		open = is_open;
+	};
 
-int Card::getCardNum()
-{
-	return card_num;
-}
+	int Card::getCardNum() {
+		return card_num;
+	};
+	Shape* Card::getCardShape() {
+		
+		return card_shape;
+		
+	};
 
-Shape* Card::getCardShape()
-{
-	return card_shape;
-}
+	bool Card::is_open() {
+		return open;
+	};
+	void Card::set_open() {
+		open = true;
+	};
+	void Card::set_open(bool opening) {
+	
+		open = opening;
+	};
+	Card::~Card() {
 
+	};
+
+/*
 Place Card::getCardPosition()
 {
 	return Place();
@@ -40,35 +56,4 @@ int Card::place(Deck someDeck)
 	return 0;
 }
 
-void Card::printing()
-{
-	std::cout << "Card_num" << card_num << std::endl << "Card_shape : ";
-	getCardShape()->print_shape;
-	std::cout << "(" << getCardShape()->get_name << std::endl;
-	std::cout << std::endl << "Card_open? : ";
-	if (open)
-		std::cout << "Yes";
-	else
-		std::cout << "No";
-	std::cout << std::endl;
-}
-
-bool Card::is_open()
-{
-	return open;
-}
-
-void Card::set_open()
-{
-	open = true;
-}
-
-void Card::set_open(bool opening)
-{
-	open = opening;
-}
-
-
-Card::~Card()
-{
-}
+*/

@@ -21,16 +21,10 @@
     <ClInclude Include="Board.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Deck.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Place.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Rule.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Shape.h">
@@ -41,22 +35,16 @@
     <ClCompile Include="Card.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Board.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Deck.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Place.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Rule.cpp">
+    <ClCompile Include="Shape.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Shape.cpp">
+    <ClCompile Include="Board.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

@@ -2,7 +2,7 @@
 
 
 int main() {
-
+	
 	Game g = Game();
 	g.~Game();
 
@@ -23,18 +23,25 @@ Game::Game()
 	std::cin >> cardNum;
     	
 	Board g = Board(variety, cardNum);
+	bool isSuccess = false;
 	int f1, f2, l1;
-	while (g.isEnd()) {
+	while (!g.isEnd()) {
 
+	//	g.print();
+		
 		std::cout << "어느 카드를 움직이시겠습니까?  ex 1 2 )  ";
 
 		std::cin >> f1; 
 		std::cin >> f2;
 		std::cout << "어디로 이동시키겠습니까?  )  ";
 		std::cin >> l1;
-
-		g.shift(f1, f2, l1);
 		
+		isSuccess = g.shift(f1, f2, l1);
+		
+
+		if (isSuccess) {
+			g.setScore();
+		}
 
 
 	}
